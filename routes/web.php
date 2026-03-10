@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return "Hola desde la pagina de inicio";
-    //return view('welcome');
+   return route('cursos.show',2);
 });
 
 Route::get('/contacto', function(){
@@ -13,12 +12,12 @@ Route::get('/contacto', function(){
 
 Route::get('/cursos/informacion', function(){
    return "Aqui podras encontrar toda la informacion de los cursos"; 
-});
+})->name('cursos.informacion');
 
 //ruta con expresion regular para recibir un parametro unicamente numerico
 Route::get('/cursos/{id}', function($id){
     return "Bienvenido al curso: $id";
-});
+})->name('cursos.show');
 
 //ruta con expresion regular para recibir un parametro unicamente numerico
 // Route::get('/cursos/{curso}', function($curso){
