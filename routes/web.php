@@ -6,13 +6,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class);
 
-//  Route::get('/posts',[PostController::class,'index'])->name('post.index');
-//  Route::get('/posts/create',[PostController::class,'create'])->name('post.create');
-//  Route::post('/posts',[PostController::class,'store'])->name('post.store');
-//  Route::get('/posts/{post}',[PostController::class,'show'])->name('post.show');
-//  Route::get('/posts/{post}/edit',[PostController::class,'edit'])->name('post.edit');
-//  Route::patch('/posts/{post}',[PostController::class,'update'])->name('post.update');
-//  Route::delete('/posts/{post}',[PostController::class,'destroy'])->name('post.destroy');
+//los grupos de rutas son recomendables cuando crear rutas que no sean pertenecientes a un crud
+Route::prefix('posts')->name('post.')->controller(PostController::class)->group(function(){
+   Route::get('/','index')->name('index');
+   Route::get('/create','create')->name('create');
+   Route::post('store')->name('store');
+   Route::get('/{post}','show')->name('show');
+   Route::get('/{post}/edit','edit')->name('edit');
+   Route::patch('/{post}','update')->name('update');
+   Route::delete('/{post}','destroy')->name('destroy');
+});
 
 //Para crear las 7 rutas necesarias para un crud se puede utilizar route::resource, esto crea todas las rutas
 //se le para dos parametros, el nombre de la uri y el controlador asociado
@@ -29,6 +32,6 @@ Route::get('/', HomeController::class);
 
 //Es posible renombrar la uri sin perder los datos originales nombrado todas las rutas
 //al ejecutar php artisan r:l se mostraran las rutas con la uri articlos pero los nombres de las rutas seguiran manteniendo el nombre de posts
-Route::resource('articulos',PostController::class)
-   ->parameters(['articulos'=>'posts'])
-   ->names('posts');
+// Route::resource('articulos',PostController::class)
+//    ->parameters(['articulos'=>'posts'])
+//    ->names('posts');
