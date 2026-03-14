@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
+    // public function index(){
+    //     return "Hola desde la pagina principal";
+    // }
+
+    public function __invoke()
+    {
         return "Hola desde la pagina principal";
     }
 }
