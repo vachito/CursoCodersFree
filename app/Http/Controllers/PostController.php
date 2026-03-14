@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        return "Hola desde todos los posts"; 
+        return view('posts.index'); 
     }
 
     public function create() {
-        return "Hola desde el formulario para crear posts";
+        return view('posts.create');
     }
 
     public function store(){
@@ -19,11 +19,11 @@ class PostController extends Controller
     }
 
     public function show($post){
-        return "Aca se muestra el post con id no. $post";
+        return view('posts.show');
     }
 
     public function edit($post){
-        return "Aca se muestra el formulario para editar el post con id no. $post";
+        return view('posts.edit');
     }
 
     public function update($post){
