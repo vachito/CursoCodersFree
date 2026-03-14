@@ -3,51 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-   return route('cursos.show',2);
+   return "Hola desde la pagina principal";
 });
 
-Route::get('/contacto', function(){
-   return "Hola desde la pagina de contacto"; 
-});
-
-Route::get('/cursos/informacion', function(){
-   return "Aqui podras encontrar toda la informacion de los cursos"; 
-})->name('cursos.informacion');
-
-//ruta con expresion regular para recibir un parametro unicamente numerico
-Route::get('/cursos/{id}', function($id){
-    return "Bienvenido al curso: $id";
-})->name('cursos.show');
-
-//ruta con expresion regular para recibir un parametro unicamente numerico
-// Route::get('/cursos/{curso}', function($curso){
-//     return "Bienvenido al curso: $curso";
-// })->whereIn('curso',['laravel','php','vue']);
-
-//ruta con expresion regular para recibir mas de un parametro
-// Route::get('/cursos/{curso}/{categoria}', function($curso,$categoria){
-//     return "Bienvenido al curso: $curso de la categoria $categoria";
-// })->where([
-//         'curso' => '[A-Za-z]+',
-//         'categoria' => '[A-Za-z]+'
-//     ]);
-
-//ruta con expresion regular para recibir un parametro unicamente numerico
-// Route::get('/cursos/{curso}', function($curso){
-//     return "Bienvenido al curso: $curso";
-// })->where('curso','[0-9]+');
-
-//ruta con expresion regular para recibir un parametro unicamente numerico
-// Route::get('/cursos/{curso}', function($curso){
-//     return "Bienvenido al curso: $curso";
-// })->whereAlpha('curso');
-
-//ruta con expresion regular para recibir un parametro unicamente numerico
-// Route::get('/cursos/{curso}', function($curso){
-//     return "Bienvenido al curso: $curso";
-// })->whereAlphaNumeric('curso');
-
-//ruta con expresion regular para recibir un parametro unicamente alfabetico
-// Route::get('/cursos/{curso}', function($curso){
-//     return "Bienvenido al curso: $curso";
-// })->where('curso','[A-Za-z]+');
+ Route::get('/posts',function(){return "Hola desde todos los posts";});
+ Route::get('/posts/create',function(){return "Hola desde el formulario para crear posts";});
+ Route::post('/posts',function(){return "Esta ruta maneja el envio de datos desde un formulario para guardar un post";});
+ Route::get('/posts/{post}',function($post){return "Aca se muestra el post con id no. $post";});
+ Route::get('/posts/{post}/edit',function($post){return "Aca se muestra el formulario para editar el post con id no. $post";});
+ Route::patch('/posts/{post}',function($post){return "Aca se procesara el formulario para editar el post con id no. $post";});
+ Route::delete('/posts/{post}',function($post){return "Eliminando el post con id no. $post";});
