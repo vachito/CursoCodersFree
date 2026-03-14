@@ -19,11 +19,13 @@ class PostController extends Controller
     }
 
     public function show($post){
-        return view('posts.show');
+        $prueba="Examen de prueba";
+        return view('posts.show',['post'=>$post,'prueba'=>$prueba]);
     }
 
     public function edit($post){
-        return view('posts.edit');
+        $prueba="Examen de prueba";
+        return view('posts.edit',compact('post','prueba'));
     }
 
     public function update($post){

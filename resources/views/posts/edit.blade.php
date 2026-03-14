@@ -8,6 +8,6 @@
     <title>VachoCode</title>
 </head>
 <body>
-    <h1>Formulario para crear editar un posts con id</h1>
+    <h1>Formulario para crear editar un posts con id {{$post}} con: {{$prueba}}</h1>
 </body>
 </html>
