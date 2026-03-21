@@ -8,7 +8,16 @@
 </head>
 <body>
     <h1>Aca se mostrara el listado de posts</h1>
-    <h2>{{$msg}}</h2>
-    {!!$etiqueta!!}
+    
+    <script>
+            //convertir un array a formato json
+            let posts = {!! json_encode($posts)!!}
+            //segunda forma de convertir a json usando sintaxis de blade
+            let posts2 = @json($posts)
+
+            console.log(posts);
+            console.log(posts2);
+    </script>
+    
 </body>
 </html>
