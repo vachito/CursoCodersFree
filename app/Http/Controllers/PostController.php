@@ -22,11 +22,9 @@ class PostController extends Controller
             ],
         ];
 
-        $valor_null = null;
+        $dia = 20;
 
-        $etiqueta="<h2> Este es un parrafo </h2>" ;
-
-        return view('posts.index',compact('posts','valor_null')); 
+        return view('posts.index',compact('posts','dia')); 
     }
 
     public function create() {
