@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(){
-        return view('posts.index'); 
+        
+        $etiqueta="<h2> Este es un parrafo </h2>" ;
+        return view('posts.index',compact('etiqueta')); 
     }
 
     public function create() {

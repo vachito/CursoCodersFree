@@ -9,5 +9,6 @@
 <body>
     <h1>Aca se mostrara el listado de posts</h1>
     <h2>{{$msg}}</h2>
+    {!!$etiqueta!!}
 </body>
 </html>
