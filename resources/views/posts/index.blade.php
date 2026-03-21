@@ -11,25 +11,17 @@
 <body>
     <h1>Aqui se mostrará el listado de posts</h1>
 
-    @if (true)
-        <p>Este mensaje se muestra si el valor de la condicional es verdadero</p>
-    @else
-        <p>Este mensaje se muestra si el valor de la condicional es false</p>
-    @endif
+    @env('local')
+        <p>Estamos en un entorno local</p>
+    @endenv
 
-    @unless (false)
-        <p>Solo se muestra si la directiva unless recibe un valor falso</p>
-    @endunless
+    {{-- @env('production')
+        <p>Estamos en produccion</p>
+    @endenv --}}
 
-    @isset($msg)
-        <p>La variable msg esta compartida para todas las vistas</p>
-    @else
-        <p>La variable no existe o no tiene un valor asignado</p>
-    @endisset
-
-    @empty($valor_null)
-        <p>La variable no existe o no tiene un valor asignado</p>
-    @endempty
+    @production
+        <p>Estamos en produccion</p>
+    @endproduction
 </body>
 
 </html>
