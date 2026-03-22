@@ -11,19 +11,15 @@
 <body>
     <h1>Aqui se mostrará el listado de posts</h1>
 
-    <ul>
-        @forelse ($posts as $post)
-            <li>
-                <h2>{{$post['title']}}</h2>
-                <p>{{$post['content']}}</p>
-            </li>  
-        
-        @empty
-             <li>
-                <p>No hay posts registrados aun</p>
-            </li>  
-        @endforelse
-    </ul>
+    
+        @for ($i = 1; $i <= $cant ; $i++)
+            <p>
+                @for ($j = 1 ; $j<$i ; $j++)    
+                    *
+                @endfor
+            </p>
+        @endfor
+    
 </body>
 
 </html>
