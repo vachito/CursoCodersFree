@@ -12,12 +12,17 @@
     <h1>Aqui se mostrará el listado de posts</h1>
 
     <ul>
-        @foreach ($posts as $post)
+        @forelse ($posts as $post)
             <li>
                 <h2>{{$post['title']}}</h2>
                 <p>{{$post['content']}}</p>
-            </li>    
-        @endforeach
+            </li>  
+        
+        @empty
+             <li>
+                <p>No hay posts registrados aun</p>
+            </li>  
+        @endforelse
     </ul>
 </body>
 
