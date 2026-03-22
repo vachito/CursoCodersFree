@@ -22,9 +22,9 @@ class PostController extends Controller
             ],
         ];
 
-        $dia = 20;
+        
 
-        return view('posts.index',compact('posts','dia')); 
+        return view('posts.index',compact('posts')); 
     }
 
     public function create() {
