@@ -119,9 +119,53 @@ Route::get('/prueba', function () {
    //    ->get();
 
    //Uso de where con operador varias condiciones
-   return DB::table('users')
+   //return DB::table('users')
       // ->where('email','like','%example.org')
       // ->orWhere('email','like','%example.net')
-      ->whereNot('email','like','%example.com')
+      //->whereNot('email','like','%example.com')
+      //->get();
+
+      //Uso de where between un arreglo de limites de condiciones
+   // return DB::table('users')
+   //    ->whereBetween('id',[1,20])
+   //    ->get();
+
+   //Uso de where con agrupaciones logicas para aplicar mas de un filtro y condicion
+   // return DB::table('users')
+   //    ->whereBetween('id',[10,30])
+   //    ->where(function($query){
+   //       $query->where('email','like','%example.org')
+   //             ->orWhere('email','like','%example.net');
+   //    })
+   //    ->get();
+
+   //Uso de orderBy, el valor por defecto es asc
+   //tambien se puede usar el metodo latest, oldest, y inRandomOrder
+   // return DB::table('users')
+      //->orderBy('id')
+      //->orderBy('id','desc')
+      //->latest('id')
+      // ->inRandomOrder()
+      //->first()
+      //->get();
+
+   /* Uso de agrupacion de registros
+      consulta para contar cuantos post tiene cada usuario 
+      el metodo having permite filtrar por un campo agregado que no existe en la base de datos
+      para este ejemplo en campo total_post */
+   // return DB::table('posts')
+   //    ->select('user_id',DB::raw("COUNT(*) as total_post"))
+   //    ->groupBy('user_id')
+   //    ->having('total_post','>',2)
+   //    ->get();
+
+      /* Uso de agrupacion de registros
+      consulta para contar cuantos post tiene cada usuario 
+      el metodo having permite filtrar por un campo agregado que no existe en la base de datos
+      para este ejemplo en campo total_post */
+   return DB::table('posts')
+      ->select('user_id',DB::raw("COUNT(*) as total_post"))
+      ->groupBy('user_id')
+      ->having('total_post','>',2)
       ->get();
 });
