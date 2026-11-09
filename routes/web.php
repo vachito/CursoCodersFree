@@ -120,12 +120,12 @@ Route::get('/prueba', function () {
 
    //Uso de where con operador varias condiciones
    //return DB::table('users')
-      // ->where('email','like','%example.org')
-      // ->orWhere('email','like','%example.net')
-      //->whereNot('email','like','%example.com')
-      //->get();
+   // ->where('email','like','%example.org')
+   // ->orWhere('email','like','%example.net')
+   //->whereNot('email','like','%example.com')
+   //->get();
 
-      //Uso de where between un arreglo de limites de condiciones
+   //Uso de where between un arreglo de limites de condiciones
    // return DB::table('users')
    //    ->whereBetween('id',[1,20])
    //    ->get();
@@ -142,12 +142,12 @@ Route::get('/prueba', function () {
    //Uso de orderBy, el valor por defecto es asc
    //tambien se puede usar el metodo latest, oldest, y inRandomOrder
    // return DB::table('users')
-      //->orderBy('id')
-      //->orderBy('id','desc')
-      //->latest('id')
-      // ->inRandomOrder()
-      //->first()
-      //->get();
+   //->orderBy('id')
+   //->orderBy('id','desc')
+   //->latest('id')
+   // ->inRandomOrder()
+   //->first()
+   //->get();
 
    /* Uso de agrupacion de registros
       consulta para contar cuantos post tiene cada usuario 
@@ -159,13 +159,69 @@ Route::get('/prueba', function () {
    //    ->having('total_post','>',2)
    //    ->get();
 
-      /* Uso de agrupacion de registros
+   /* Uso de agrupacion de registros
       consulta para contar cuantos post tiene cada usuario 
       el metodo having permite filtrar por un campo agregado que no existe en la base de datos
       para este ejemplo en campo total_post */
-   return DB::table('posts')
-      ->select('user_id',DB::raw("COUNT(*) as total_post"))
-      ->groupBy('user_id')
-      ->having('total_post','>',2)
-      ->get();
+   // return DB::table('posts')
+   //    ->select('user_id',DB::raw("COUNT(*) as total_post"))
+   //    ->groupBy('user_id')
+   //    ->having('total_post','>',2)
+   //    ->get();
+
+
+   /* Uso de la funcion condicional when
+      consulta para mostrar registros si se cumple el valor de una variable booleana 
+      para este ejemplo se muestra si la variable prueba es verdadera */
+   $prueba = true;
+
+   // return DB::table('users')
+   // ->when($prueba, function ($query) {
+   //    $query->whereBetween('id',[10,20]);
+   // })
+   // ->get();
+
+
+   /* Insertar registros en un tabla */
+
+   DB::table('users')
+      // ->insert([
+      //    'name' => 'Rigoberto Xocoxic',
+      //    'email' => 'vacho19@gmail.com',
+      //    'password' => bcrypt(123456789)
+      // ]); 
+      // ->insertOrIgnore([
+      //    [
+      //       'name' => 'Rigoberto Xocoxic',
+      //       'email' => 'vacho19@gmail.com',
+      //       'password' => bcrypt(123456789)
+      //    ],
+      //    [
+      //       'name' => 'Mery Hernandez',
+      //       'email' => 'mery@gmail.com',
+      //       'password' => bcrypt(123456789)
+      //    ]
+      // ]); 
+
+      //este medoto crea o actualiza un registro segun las condiciones dadas en los arreglos
+      //primer arreglo datos a crear o actualizar
+      //segundo arreglo, que campo se usara para buscar el registro si es que existe
+      //tercer arreglo, que campos se quieren actualizar
+      ->upsert(
+         [
+            'name' => 'Rigoberto',
+            'lastname' => 'Xocoxic',
+            'email' => 'vacho19@gmail.com',
+            'password' => bcrypt(123456789)
+         ],
+         [
+            'email'
+         ],
+         [
+            'name',
+            'lastname'
+         ]
+      );
+
+   return 'Usuario creado o actualizado correctamente';
 });
