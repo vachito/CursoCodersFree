@@ -173,7 +173,7 @@ Route::get('/prueba', function () {
    /* Uso de la funcion condicional when
       consulta para mostrar registros si se cumple el valor de una variable booleana 
       para este ejemplo se muestra si la variable prueba es verdadera */
-   $prueba = true;
+   //$prueba = true;
 
    // return DB::table('users')
    // ->when($prueba, function ($query) {
@@ -184,7 +184,7 @@ Route::get('/prueba', function () {
 
    /* Insertar registros en un tabla */
 
-   DB::table('users')
+   $users =  DB::table('users')
       // ->insert([
       //    'name' => 'Rigoberto Xocoxic',
       //    'email' => 'vacho19@gmail.com',
@@ -203,25 +203,32 @@ Route::get('/prueba', function () {
       //    ]
       // ]); 
 
-      //este medoto crea o actualiza un registro segun las condiciones dadas en los arreglos
-      //primer arreglo datos a crear o actualizar
-      //segundo arreglo, que campo se usara para buscar el registro si es que existe
-      //tercer arreglo, que campos se quieren actualizar
-      ->upsert(
-         [
-            'name' => 'Rigoberto',
-            'lastname' => 'Xocoxic',
-            'email' => 'vacho19@gmail.com',
-            'password' => bcrypt(123456789)
-         ],
-         [
-            'email'
-         ],
-         [
-            'name',
-            'lastname'
-         ]
-      );
+      //actualiza un registro
+      // ->where('id',1001)
+      // ->update([
+      //    'lastname' => 'Xocoxic Chavaló'
+      // ]);
 
-   return 'Usuario creado o actualizado correctamente';
+      //actualiza un registro segun las condiciones dadas
+      //primer arreglo busca si el registro existe
+      //segundo arreglo actuliza si encuentra el registro
+      //si no exite combina ambos arreglos e inserta el registro nuevo
+      // ->updateOrInsert(
+      //    [
+      //       'email' => 'vacho20@gmail.com',
+      //    ],
+      //    [
+      //       'name' => 'Rigoberto sin segundo nombre',
+      //       'password' => bcrypt(12345678)
+      //    ]
+      // ); 
+
+      //Usar la funcion increment
+      // ->where('id',1)
+      // ->increment('rating',1);
+      
+      //Usar la funcion increment
+      ->paginate(25);
+
+      return view('prueba',compact('users'));
 });
